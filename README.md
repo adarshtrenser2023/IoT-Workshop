@@ -1,14 +1,20 @@
 # IoT-Workshop
 
 # venv setup
+
 sudo apt install python3.11-venv
+
 python3 -m venv myiot
+
 source myiot/bin/activate
 
 # libraries to be added
 pip3 install RPi.GPIO
+
 pip3 install adafruit-circuitpython-dht
+
 sudo apt-get install libgpiod2
+
 pip3 install paho-mqtt
 
 # LED code
@@ -43,9 +49,8 @@ blue_on()
 #blue led off
 blue_off()
 
-GPIO.cleanup()
 
-#DHT11 sensor read
+# DHT11 sensor read
 import adafruit_dht
 import board
 import time
@@ -59,7 +64,7 @@ def read_dht_sensor():
   
 while True:
     try:
-        # Read sensor data
+        #Read sensor data
         temperature, humidity = read_dht_sensor()
 
         if temperature is not None and humidity is not None:
@@ -78,22 +83,22 @@ import paho.mqtt.client as mqtt
 import json
 
 # MQTT Broker Connection Details
-# Replace with your MQTT broker address
+#Replace with your MQTT broker address
 BROKER_ADDRESS = "a2h0zp3xnw63ym-ats.iot.ap-southeast-2.amazonaws.com" 
-# Default MQTT port 
+#Default MQTT port 
 PORT = 8883
-# MQTT topic to subscribe
+#MQTT topic to subscribe
 TopicSub = "iot/workshop/adarsh-ap/command" 
-# MQTT topic to publish tempeature data
+#MQTT topic to publish tempeature data
 TopicPubTemp = "iot/workshop/adarsh-ap/telemetry/temp"  
-# MQTT topic to publish humidity data
+#MQTT topic to publish humidity data
 TopicPubHum = "iot/workshop/adarsh-ap/telemetry/humidity"
 
-# Paths to your SSL/TLS certificates
+#Paths to your SSL/TLS certificates
 CA_CERTS = "CA.pem"
-# Optional, if client authentication is required
+#Optional, if client authentication is required
 CLIENT_CERT = "cert.crt"
-# Optional, if client authentication is required
+#Optional, if client authentication is required
 CLIENT_KEY = "private.key"
 
 
@@ -110,7 +115,7 @@ client.tls_set(ca_certs=CA_CERTS,
                tls_version=mqtt.ssl.PROTOCOL_TLSv1_2)
 
 
-# Connect to the MQTT broker
+#Connect to the MQTT broker
 client.connect(BROKER_ADDRESS, PORT, keepalive=60)
 client.loop_start()
 client.subscribe(TopicSub)
