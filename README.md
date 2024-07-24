@@ -24,9 +24,10 @@ pip3 install paho-mqtt
 	
 	#LEDPINs
 	
-	PIN_LED_BLUE = 23
-	PIN_LED_RED = 24
-	PIN_LED_GREEN = 25
+	
+	PIN_LED_RED = 23
+	PIN_LED_GREEN = 24
+ 	PIN_LED_BLUE = 25
 	
 	#LED pin setup
 	GPIO.setmode(GPIO.BCM)
